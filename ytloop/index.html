@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta charset="utf-8">
+  <title>YTLOOP</title>
+  <meta name="description" content="Watch YouTube videos in loop">
+  <style>
+    body {
+      background-color: #FFCFC0;
+      color: #1F1F1F;
+      text-align: center;
+    }
+    h1 {
+      font-family: Times New Roman, Times, serif;
+      font-size: 60pt;
+      font-weight: 100;
+      letter-spacing: 0.5em;
+      cursor: default;
+      margin: 2.2%;
+    }
+    hr {
+      border: 0;
+      width: 18%;
+      height: 1px;
+      color: black;
+      background-color: black;
+    }
+    #urlbar {
+      padding: 2.2%;
+    }
+  </style>
+</head>
+<body>
+  <h1>YTLOOP</h1>
+  <hr>
+  <div id="urlbar">
+    <form onsubmit="return parseUrl()">
+      <input id="box-url" type="text" name="v" maxlength="64" size="36" placeholder="YouTube Video ID...">
+      <input id="btn-play" type="submit" value="&#9654;">
+    </form>
+  </div>
+  <div id="player"></div>
+
+  <script type="text/javascript">
+    var vid, player;
+
+    function parseUrl() {
+      // TODO: make this function smarter
+      return !!document.getElementById("box-url").value;
+    }
+
+    function getQueryParam(name, url) {
+      var qs = url ? url : document.location.search;
+      return qs.replace(
+        new RegExp("^(?:.*[&\\?]" + name + "(?:\\=([^&]*))?)?.*$", "i"),
+        "$1");
+    }
+
+    function onPlayerError(error) {
+      if (error == 100) {
+        setTimeout('player.loadVideoById(vid)', 1000);
+      }
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        player.seekTo(0, true);
+        player.playVideo()
+      }
+    }
+
+    function loadVideo(id) {
+      document.getElementById("box-url").value = id;
+      if (player) {
+        return player.loadVideoById(id);
+      }
+      player = new YT.Player('player', {
+        height: 385,
+        width: 640,
+        playerVars: { autoplay: 1, rel: 0, modestbranding: 1, iv_load_policy: 3 },
+        videoId: id,
+        events: {
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError
+        }
+      });
+    }
+
+    function onYouTubeIframeAPIReady() {
+      vid = getQueryParam("v");
+      if (vid) {
+        loadVideo(vid);
+      }
+    }
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>

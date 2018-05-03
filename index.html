@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+FYI, I'm using this fancy and bloated homepage to look cool
+but truthfully, I'm all about minimalism. Long live Gopher!
+-->
+<html>
+<head>
+	<title>Olivier Duclos - aka odc or oliwer or sleepycat</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="Olivier Duclos's Homepage - odc, oliwer, sleepycat">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<link rel="icon" href="animated_favicon1.gif" type="image/gif">
+</head>
+<body class="loading">
+	<div id="wrapper">
+		<div id="bg"></div>
+		<div id="overlay"></div>
+		<div id="main">
+
+			<!-- Header -->
+			<header id="header">
+				<h1>Olivier Duclos</h1>
+				<p>Coder &nbsp;&bull;&nbsp; DevOps &nbsp;&bull;&nbsp; But still enjoys low-tech things</p>
+				<nav>
+					<ul>
+						<li><a href="https://twitter.com/ohdeesee" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/oliwer" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/olivierduclos" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="http://www.viadeo.com/p/002253xlx5lbw8la" class="icon fa-viadeo"><span class="label">Viadeo</span></a></li>
+						<li><a href="mailto:nospam@please.bro" class="icon fa-envelope-o" onmouseover="reveal(this)"><span class="label">Email</span></a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<span class="copyright">&copy; Olivier Duclos. Design: <a href="http://html5up.net">html5 up</a>.</span>
+			</footer>
+
+		</div>
+	</div>
+	<!--[if lte IE 8]><script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script><![endif]-->
+	<script>
+		window.onload = function() { document.body.className = ''; }
+		window.ontouchmove = function() { return false; }
+		window.onorientationchange = function() { document.body.scrollTop = 0; }
+		function reveal(it) {
+			it.href = [".com","fastmail","@","odc","mailto:"].reverse().join("");
+		}
+	</script>
+</body>
+</html>
